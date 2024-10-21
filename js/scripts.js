@@ -51,4 +51,26 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    const alunosContainer = document.getElementById("alunos");
+    const alunos = alunosContainer.querySelectorAll(".col-lg-4, h3");
+    const carregarMaisAlunos = document.getElementById("carregarMaisAlunos");
+    let index = 0;
+
+    function mostrarNovosAlunos(){
+        for (let i = 0; i < 4; i++){
+            if (index < alunos.length){
+                alunos[index].style.display = "block";
+                index++;
+            }
+        }
+
+        if (index >= alunos.length){
+            carregarMaisAlunos.style.display = "none";
+        }
+    }
+
+    mostrarNovosAlunos();
+
+    carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
+
 });
