@@ -3833,7 +3833,7 @@ textarea.form-control-lg {
   font-size: var(--bs-navbar-toggler-font-size);
   line-height: 1;
   color: var(--bs-navbar-color);
-  background-color: transparent;
+  background-color: #143CA1;
   border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
   border-radius: var(--bs-navbar-toggler-border-radius);
   transition: var(--bs-navbar-toggler-transition);
@@ -4150,7 +4150,7 @@ textarea.form-control-lg {
 }
 
 .navbar-dark {
-  --bs-navbar-color: rgba(255, 255, 255, 0.55);
+  --bs-navbar-color: rgb(255, 255, 255);
   --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
   --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
   --bs-navbar-active-color: #fff;
@@ -10889,7 +10889,7 @@ p {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: #ffffff; /*Cor navbar Mobile*/
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
