@@ -953,6 +953,11 @@ progress {
     flex: 0 0 auto;
     width: 50%;
   }
+  #portfolio .col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%;
+    display: none;
+  }
   .col-sm-7 {
     flex: 0 0 auto;
     width: 58.33333333%;
@@ -1290,7 +1295,9 @@ progress {
     display: none;
   }
 
-  #alunos h3{
+  #portfolio .col-lg-4{
+    flex: 0 0 auto;
+    width: 33.33333333%;
     display: none;
   }
 
@@ -11029,6 +11036,7 @@ header.masthead .masthead-heading {
   padding: 1.5rem;
   text-align: center;
   background-color: #fff;
+  min-height: 180px;
 }
 #portfolio .portfolio-item .portfolio-caption .portfolio-caption-heading {
   font-size: 1.5rem;

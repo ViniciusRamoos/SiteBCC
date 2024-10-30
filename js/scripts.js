@@ -51,26 +51,97 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    // Botões "Mostar Mais" e "Mostrar Menos" da seção Alunos
     const alunosContainer = document.getElementById("alunos");
     const alunos = alunosContainer.querySelectorAll(".col-lg-4, h3");
     const carregarMaisAlunos = document.getElementById("carregarMaisAlunos");
-    let index = 0;
+    const carregarMenosAlunos = document.getElementById("carregarMenosAlunos");
+    let indexAlunos = 0;
 
     function mostrarNovosAlunos(){
-        for (let i = 0; i < 4; i++){
-            if (index < alunos.length){
-                alunos[index].style.display = "block";
-                index++;
+        for (let i = 0; i < 3; i++){
+            if (indexAlunos < alunos.length){
+                alunos[indexAlunos].style.display = "block";
+                indexAlunos++;
             }
         }
 
-        if (index >= alunos.length){
-            carregarMaisAlunos.style.display = "none";
+        carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
+
+        carregarMaisAlunos.style.display = indexAlunos >= alunos.length ? "none" : "inline-block";
+
+        //Suavização do scroll
+        if (indexAlunos > 0){
+            alunos[indexAlunos - 1].scrollIntoView({behavior: "smooth", block: "start"});
         }
     }
 
+    function esconderNovosAlunos(){
+        for (let i = 0; i < 3; i++){
+            if (indexAlunos > 0){
+                indexAlunos--;
+                alunos[indexAlunos].style.display = "none";
+            }
+        }
+
+        carregarMaisAlunos.style.display = indexAlunos < alunos.length ? "inline-block" : "none";
+
+        carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
+
+        if(indexAlunos > 0){
+            alunos[indexAlunos - 1].scrollIntoView({behavior: "smooth", block:"start"});
+        }
+    }
+
+    // Botões "Mostar Mais" e "Mostrar Menos" da seção Areas
+    const areasContainer = document.getElementById("portfolio");
+    const areas = areasContainer.querySelectorAll(".col-lg-4, .col-sm-6");
+    const carregarMaisAreas = document.getElementById("carregarMaisAreas");
+    const carregarMenosAreas = document.getElementById("carregarMenosAreas");
+    let indexAreas = 0;
+
+    function mostrarNovasAreas(){
+        for (let i = 0; i < 3; i++){
+            if (indexAreas < areas.length){
+                areas[indexAreas].style.display = "block";
+                indexAreas++;
+            }
+        }
+
+        carregarMenosAreas.style.display = indexAreas > 3 ? "inline-block" : "none";
+
+        carregarMaisAreas.style.display = indexAreas >= areas.length ? "none" : "inline-block";
+        
+        //Suavização do scroll
+        if (indexAreas > 0){
+            areas[indexAreas - 1].scrollIntoView({behavior: "smooth", block: "start"});
+        }
+    }
+
+    function esconderNovasAreas(){
+        for (let i = 0; i < 3; i++){
+            if (indexAreas > 0 ){
+                indexAreas--;
+                areas[indexAreas].style.display = "none";
+            }
+        }
+
+        carregarMaisAreas.style.display = indexAreas < areas.length ? "inline-block" : "none";
+
+        carregarMenosAreas.style.display = indexAreas > 3 ? "inline-block" : "none";
+
+        if (indexAreas > 0){
+            areas[indexAreas - 1].scrollIntoView({behavior: "smooth", block: "start"});
+        }
+    }
+
+
     mostrarNovosAlunos();
+    mostrarNovasAreas();
 
     carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
+    carregarMaisAreas.addEventListener("click", mostrarNovasAreas);
+    carregarMenosAlunos.addEventListener("click",esconderNovosAlunos);
+    carregarMenosAreas.addEventListener("click",esconderNovasAreas);
 
 });
