@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     // Botões "Mostrar Mais" e "Mostrar Menos" da seção Areas
-    const areasContainer = document.getElementById("portfolio");
+    const areasContainer = document.getElementById("areas");
     const areas = areasContainer.querySelectorAll(".col-lg-4, .col-sm-6");
     const carregarMaisAreas = document.getElementById("carregarMaisAreas");
     const carregarMenosAreas = document.getElementById("carregarMenosAreas");
