@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    // Botões "Mostar Mais" e "Mostrar Menos" da seção Alunos
+    // Botões "Mostrar Mais" e "Mostrar Menos" da seção Alunos
     const alunosContainer = document.getElementById("alunos");
     const alunos = alunosContainer.querySelectorAll(".col-lg-4, h3");
     const carregarMaisAlunos = document.getElementById("carregarMaisAlunos");
@@ -93,7 +93,7 @@ window.addEventListener('DOMContentLoaded', event => {
         }
     }
 
-    // Botões "Mostar Mais" e "Mostrar Menos" da seção Areas
+    // Botões "Mostrar Mais" e "Mostrar Menos" da seção Areas
     const areasContainer = document.getElementById("portfolio");
     const areas = areasContainer.querySelectorAll(".col-lg-4, .col-sm-6");
     const carregarMaisAreas = document.getElementById("carregarMaisAreas");
@@ -135,13 +135,58 @@ window.addEventListener('DOMContentLoaded', event => {
         }
     }
 
+    // Botões "Mostrar Mais" e "Mostrar Menos" da seção Professores
+    const professoresContainer = document.getElementById("professores");
+    const professores = professoresContainer.querySelectorAll(".col-lg-4");
+    const carregarMaisProfessores = document.getElementById("carregarMaisProfessores");
+    const carregarMenosProfessores = document.getElementById("carregarMenosProfessores");
+    let indexProfessores = 0;
+
+    function mostrarNovosProfessores(){
+        for (let i = 0; i < 3; i++){
+            if (indexProfessores < professores.length){
+                professores[indexProfessores].style.display = "block";
+                indexProfessores++;
+            }
+        }
+
+        carregarMenosProfessores.style.display = indexProfessores > 3 ? "inline-block" : "none";
+
+        carregarMaisProfessores.style.display = indexProfessores >= professores.length ? "none" : "inline-block";
+
+        //Suavização do scroll
+        if (indexProfessores > 0){
+            professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block: "start"});
+        }
+    }
+
+    function esconderNovosProfessores(){
+        for (let i = 0; i < 3; i++){
+            if (indexProfessores > 0){
+                indexProfessores--;
+                professores[indexProfessores].style.display = "none";
+            }
+        }
+
+        carregarMaisProfessores.style.display = indexProfessores < professores.length ? "inline-block" : "none";
+
+        carregarMenosProfessores.style.display = indexProfessores > 3 ? "inline-block" : "none";
+
+        if(indexProfessores > 0){
+            professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block:"start"});
+        }
+    }
 
     mostrarNovosAlunos();
     mostrarNovasAreas();
+    mostrarNovosProfessores();
+    window.scrollTo(0,0);
 
     carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
     carregarMaisAreas.addEventListener("click", mostrarNovasAreas);
+    carregarMaisProfessores.addEventListener("click", mostrarNovosProfessores);
     carregarMenosAlunos.addEventListener("click",esconderNovosAlunos);
     carregarMenosAreas.addEventListener("click",esconderNovasAreas);
+    carregarMenosProfessores.addEventListener("click",esconderNovosProfessores);
 
 });
