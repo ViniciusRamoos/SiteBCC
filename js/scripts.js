@@ -136,15 +136,12 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     mostrarNovosAlunos();
-    mostrarNovasAreas();
     mostrarNovosProfessores();
     window.scrollTo(0,0);
 
     carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
-    carregarMaisAreas.addEventListener("click", mostrarNovasAreas);
     carregarMaisProfessores.addEventListener("click", mostrarNovosProfessores);
     carregarMenosAlunos.addEventListener("click",esconderNovosAlunos);
-    carregarMenosAreas.addEventListener("click",esconderNovasAreas);
     carregarMenosProfessores.addEventListener("click",esconderNovosProfessores);
 
 });
