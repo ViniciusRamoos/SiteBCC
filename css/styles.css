@@ -954,11 +954,7 @@ progress {
     flex: 0 0 auto;
     width: 50%;
   }
-  #areas .col-sm-6 {
-    flex: 0 0 auto;
-    width: 50%;
-    display: none;
-  }
+
   .col-sm-7 {
     flex: 0 0 auto;
     width: 58.33333333%;
@@ -1291,12 +1287,6 @@ progress {
   }
   
   #alunos .col-lg-4 {
-    flex: 0 0 auto;
-    width: 33.33333333%;
-    display: none;
-  }
-
-  #areas .col-lg-4{
     flex: 0 0 auto;
     width: 33.33333333%;
     display: none;

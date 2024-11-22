@@ -93,48 +93,6 @@ window.addEventListener('DOMContentLoaded', event => {
         }
     }
 
-    // Botões "Mostrar Mais" e "Mostrar Menos" da seção Areas
-    const areasContainer = document.getElementById("areas");
-    const areas = areasContainer.querySelectorAll(".col-lg-4, .col-sm-6");
-    const carregarMaisAreas = document.getElementById("carregarMaisAreas");
-    const carregarMenosAreas = document.getElementById("carregarMenosAreas");
-    let indexAreas = 0;
-
-    function mostrarNovasAreas(){
-        for (let i = 0; i < 3; i++){
-            if (indexAreas < areas.length){
-                areas[indexAreas].style.display = "block";
-                indexAreas++;
-            }
-        }
-
-        carregarMenosAreas.style.display = indexAreas > 3 ? "inline-block" : "none";
-
-        carregarMaisAreas.style.display = indexAreas >= areas.length ? "none" : "inline-block";
-        
-        //Suavização do scroll
-        if (indexAreas > 0){
-            areas[indexAreas - 1].scrollIntoView({behavior: "smooth", block: "start"});
-        }
-    }
-
-    function esconderNovasAreas(){
-        for (let i = 0; i < 3; i++){
-            if (indexAreas > 0 ){
-                indexAreas--;
-                areas[indexAreas].style.display = "none";
-            }
-        }
-
-        carregarMaisAreas.style.display = indexAreas < areas.length ? "inline-block" : "none";
-
-        carregarMenosAreas.style.display = indexAreas > 3 ? "inline-block" : "none";
-
-        if (indexAreas > 0){
-            areas[indexAreas - 1].scrollIntoView({behavior: "smooth", block: "start"});
-        }
-    }
-
     // Botões "Mostrar Mais" e "Mostrar Menos" da seção Professores
     const professoresContainer = document.getElementById("professores");
     const professores = professoresContainer.querySelectorAll(".col-lg-4");
