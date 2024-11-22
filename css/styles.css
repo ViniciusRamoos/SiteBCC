@@ -2995,6 +2995,39 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #212529;
 }
 
+#professores .btn-dark {
+  --bs-btn-color: #212529;
+  --bs-btn-bg: #ffffff;
+  --bs-btn-border-color: #ffffff;
+  --bs-btn-hover-color: #212529;
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-hover-border-color: #212529;
+  --bs-btn-focus-shadow-rgb: 66, 70, 73;
+  --bs-btn-active-color: #212529;
+  --bs-btn-active-bg: #ffffff;
+  --bs-btn-active-border-color: #373b3e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #212529;
+  --bs-btn-disabled-border-color: #212529;
+}
+
+#professores .btn-social {
+  height: 5rem;
+  width: 5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 100%;
+}
+
+#professores a img{
+  height: 3.3rem; 
+  width: 3.3rem; 
+  border: none;
+}
+
 .btn-outline-primary {
   --bs-btn-color: #ffc800;
   --bs-btn-border-color: #ffc800;
