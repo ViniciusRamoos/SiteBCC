@@ -116,6 +116,59 @@ window.addEventListener('DOMContentLoaded', event => {
         }
     }
 
+    function inicializarGraduados(ano) {
+        const graduadosContainer = document.getElementById(`graduados-${ano}`);
+        const graduados = graduadosContainer.querySelectorAll(".team-member");
+        const carregarMaisGraduados = document.getElementById(`carregarMaisGraduados${ano}`);
+        const carregarMenosGraduados = document.getElementById(`carregarMenosGraduados${ano}`);
+        let indexGraduados = 3;
+    
+        function mostrarNovosGraduados() {
+            for (let i = 0; i < 3; i++) {
+                if (indexGraduados < graduados.length) {
+                    graduados[indexGraduados].style.display = "block";
+                    indexGraduados++;
+                }
+            }
+    
+            carregarMenosGraduados.style.display = indexGraduados > 3 ? "inline-block" : "none";
+            carregarMaisGraduados.style.display = indexGraduados >= graduados.length ? "none" : "inline-block";
+    
+            // Suavização do scroll
+            if (indexGraduados > 0) {
+                graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    
+        function esconderNovosGraduados() {
+            const reducao = indexGraduados === graduados.length ? graduados.length % 3 : 3;
+    
+            for (let i = 0; i < reducao; i++) {
+                if (indexGraduados > 0) {
+                    indexGraduados--;
+                    graduados[indexGraduados].style.display = "none";
+                }
+            }
+    
+            carregarMaisGraduados.style.display = indexGraduados < graduados.length ? "inline-block" : "none";
+            carregarMenosGraduados.style.display = indexGraduados > 3 ? "inline-block" : "none";
+    
+            if (indexGraduados > 0) {
+                graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    
+        carregarMaisGraduados.addEventListener("click", mostrarNovosGraduados);
+        carregarMenosGraduados.addEventListener("click", esconderNovosGraduados);
+    
+        // Inicializar o estado inicial
+        for (let i = 0; i < graduados.length; i++) {
+            graduados[i].style.display = i < 3 ? "block" : "none";
+        }
+        carregarMaisGraduados.style.display = graduados.length > 3 ? "inline-block" : "none";
+        carregarMenosGraduados.style.display = "none";
+    }
+
     mostrarNovosAlunos();
     mostrarNovosProfessores();
     window.scrollTo(0,0);
@@ -124,5 +177,8 @@ window.addEventListener('DOMContentLoaded', event => {
     carregarMaisProfessores.addEventListener("click", mostrarNovosProfessores);
     carregarMenosAlunos.addEventListener("click",esconderNovosAlunos);
     carregarMenosProfessores.addEventListener("click",esconderNovosProfessores);
+
+    const anos = [2019, 2020];
+    anos.forEach(inicializarGraduados);
 
 });
