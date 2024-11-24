@@ -32,48 +32,6 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    // Botões "Mostrar Mais" e "Mostrar Menos" da seção Alunos
-    const alunosContainer = document.getElementById("alunos");
-    const alunos = alunosContainer.querySelectorAll(".col-lg-4, h3");
-    const carregarMaisAlunos = document.getElementById("carregarMaisAlunos");
-    const carregarMenosAlunos = document.getElementById("carregarMenosAlunos");
-    let indexAlunos = 0;
-
-    function mostrarNovosAlunos(){
-        for (let i = 0; i < 3; i++){
-            if (indexAlunos < alunos.length){
-                alunos[indexAlunos].style.display = "block";
-                indexAlunos++;
-            }
-        }
-
-        carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
-
-        carregarMaisAlunos.style.display = indexAlunos >= alunos.length ? "none" : "inline-block";
-
-        //Suavização do scroll
-        if (indexAlunos > 0){
-            alunos[indexAlunos - 1].scrollIntoView({behavior: "smooth", block: "start"});
-        }
-    }
-
-    function esconderNovosAlunos(){
-        for (let i = 0; i < 3; i++){
-            if (indexAlunos > 0){
-                indexAlunos--;
-                alunos[indexAlunos].style.display = "none";
-            }
-        }
-
-        carregarMaisAlunos.style.display = indexAlunos < alunos.length ? "inline-block" : "none";
-
-        carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
-
-        if(indexAlunos > 0){
-            alunos[indexAlunos - 1].scrollIntoView({behavior: "smooth", block:"start"});
-        }
-    }
-
     // Botões "Mostrar Mais" e "Mostrar Menos" da seção Professores
     const professoresContainer = document.getElementById("professores");
     const professores = professoresContainer.querySelectorAll(".col-lg-4");
@@ -169,16 +127,69 @@ window.addEventListener('DOMContentLoaded', event => {
         carregarMenosGraduados.style.display = "none";
     }
 
-    mostrarNovosAlunos();
-    mostrarNovosProfessores();
-    window.scrollTo(0,0);
+    function inicializarAlunos(ano) {
+        const alunosContainer = document.getElementById(`alunos-${ano}`);
+        const alunos = alunosContainer.querySelectorAll(".team-member");
+        const carregarMaisAlunos = document.getElementById(`carregarMaisAlunos${ano}`);
+        const carregarMenosAlunos = document.getElementById(`carregarMenosAlunos${ano}`);
+        let indexAlunos = 3;
+    
+        function mostrarNovosAlunos() {
+            for (let i = 0; i < 3; i++) {
+                if (indexAlunos < alunos.length) {
+                    alunos[indexAlunos].style.display = "block";
+                    indexAlunos++;
+                }
+            }
+    
+            carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
+            carregarMaisAlunos.style.display = indexAlunos >= alunos.length ? "none" : "inline-block";
+    
+            // Suavização do scroll
+            if (indexAlunos > 0) {
+                alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    
+        function esconderNovosAlunos() {
+            const reducao = indexAlunos === alunos.length ? alunos.length % 3 : 3;
+    
+            for (let i = 0; i < reducao; i++) {
+                if (indexAlunos > 0) {
+                    indexAlunos--;
+                    alunos[indexAlunos].style.display = "none";
+                }
+            }
+    
+            carregarMaisAlunos.style.display = indexAlunos < alunos.length ? "inline-block" : "none";
+            carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
+    
+            if (indexAlunos > 0) {
+                alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    
+        carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
+        carregarMenosAlunos.addEventListener("click", esconderNovosAlunos);
+    
+        // Inicializar o estado inicial
+        for (let i = 0; i < alunos.length; i++) {
+            alunos[i].style.display = i < 3 ? "block" : "none";
+        }
+        carregarMaisAlunos.style.display = alunos.length > 3 ? "inline-block" : "none";
+        carregarMenosAlunos.style.display = "none";
+    }
 
-    carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
+    mostrarNovosProfessores();
+
     carregarMaisProfessores.addEventListener("click", mostrarNovosProfessores);
-    carregarMenosAlunos.addEventListener("click",esconderNovosAlunos);
     carregarMenosProfessores.addEventListener("click",esconderNovosProfessores);
 
-    const anos = [2019, 2020];
-    anos.forEach(inicializarGraduados);
+    const anosGraduados = [2019, 2020];
+    anosGraduados.forEach(inicializarGraduados);
 
+    const anosAlunos = [2019, 2020, 2021, 2022, 2023, 2024];
+    anosAlunos.forEach(inicializarAlunos);
+
+    window.scrollTo(0,0);
 });

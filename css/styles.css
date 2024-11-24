@@ -1285,13 +1285,6 @@ progress {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-  
-  #alunos .col-lg-4 {
-    flex: 0 0 auto;
-    width: 33.33333333%;
-    display: none;
-  }
-
   #professores .col-lg-4{
     flex: 0 0 auto;
     width: 33.33333333%;
