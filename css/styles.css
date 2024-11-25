@@ -11350,7 +11350,17 @@ section#contato form#contatoForm :-ms-input-placeholder {
   font-weight: 700;
   color: #ced4da;
 }
-
+section#contato #contato-imagens{
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+section#contato #contato-imagens img{
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
 .footer {
   text-align: center;
   font-size: 0.9rem;
