@@ -190,6 +190,111 @@ window.addEventListener('DOMContentLoaded', event => {
 
     const anosAlunos = [2019, 2020, 2021, 2022, 2023, 2024];
     anosAlunos.forEach(inicializarAlunos);
+    validaFormulario();
 
     window.scrollTo(0,0);
+
+    document.querySelectorAll('input, textarea').forEach(function(element) {
+        element.addEventListener('input', function() {
+            validaFormulario();
+        });
+    });
+
+    function validaFormulario() {
+    
+    let nome = document.querySelector('input[name="nome"]').value;
+    let email = document.querySelector('input[name="email"]').value;
+    let celular = document.querySelector('input[name="celular"]').value;
+    let mensagem = document.querySelector('textarea[name="mensagem"]').value;
+
+    let submitButton = document.getElementById("submitButton");
+    
+    
+    document.querySelectorAll('.error-message').forEach(function(errorSpan) {
+        errorSpan.style.display = 'none';
+    });
+
+    let errors = false;
+
+    
+    if (nome === "") {
+        document.getElementById('errorNome').textContent = "O campo 'Nome' está vazio.";
+        document.getElementById('errorNome').style.display = 'block';
+        errors = true;
+    }
+
+    if (email === "") {
+        document.getElementById('errorEmail').textContent = "O campo 'Email' está vazio.";
+        document.getElementById('errorEmail').style.display = 'block';
+        errors = true;
+    }
+
+    if (celular === "") {
+        document.getElementById('errorCelular').textContent = "O campo 'Celular' está vazio.";
+        document.getElementById('errorCelular').style.display = 'block';
+        errors = true;
+    }
+
+    if (mensagem === "") {
+        document.getElementById('errorMensagem').textContent = "O campo 'Mensagem' está vazio.";
+        document.getElementById('errorMensagem').style.display = 'block';
+        errors = true;
+    }
+
+    
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (email && !emailPattern.test(email)) {
+        document.getElementById('errorEmail').textContent = "O email não está no formato correto.";
+        document.getElementById('errorEmail').style.display = 'block';
+        errors = true;
+    }
+
+    
+    if (errors) {
+        submitButton.disabled = true;
+    } else {
+        submitButton.disabled = false;
+    }
+    }
+
+    const form = document.getElementById('contatoForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', function(e) {
+        const formData = new FormData(form);
+        e.preventDefault();
+
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        result.innerHTML = "Aguarde..."
+
+        fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status === 200) {
+                    result.innerHTML = "Email enviado com sucesso!";
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = "Algo deu errado!";
+            })
+            .then(function() {
+                form.reset();
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 3000);
+            });
+    });
 });

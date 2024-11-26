@@ -11361,6 +11361,15 @@ section#contato #contato-imagens img{
   height: auto;
   object-fit: cover;
 }
+#result{
+  background-color: #FFFFFF;
+  color: #143CA1;
+  text-align: center;
+}
+.error-message{
+  color: #a31621;
+  display: none;
+}
 .footer {
   text-align: center;
   font-size: 0.9rem;
