@@ -58,7 +58,13 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     function esconderNovosProfessores(){
-        for (let i = 0; i < 3; i++){
+        let reducao = indexProfessores === professores.length ? professores.length % 3 : 3;
+
+        if (reducao === 0) {
+            reducao = 3;
+        }
+
+        for (let i = 0; i < reducao; i++){
             if (indexProfessores > 0){
                 indexProfessores--;
                 professores[indexProfessores].style.display = "none";
@@ -99,7 +105,11 @@ window.addEventListener('DOMContentLoaded', event => {
         }
     
         function esconderNovosGraduados() {
-            const reducao = indexGraduados === graduados.length ? graduados.length % 3 : 3;
+            let reducao = indexGraduados === graduados.length ? graduados.length % 3 : 3;
+            
+            if (reducao === 0) {
+                reducao = 3;
+            }
     
             for (let i = 0; i < reducao; i++) {
                 if (indexGraduados > 0) {
@@ -152,7 +162,11 @@ window.addEventListener('DOMContentLoaded', event => {
         }
     
         function esconderNovosAlunos() {
-            const reducao = indexAlunos === alunos.length ? alunos.length % 3 : 3;
+            let reducao = indexAlunos === alunos.length ? alunos.length % 3 : 3;
+
+            if (reducao === 0) {
+                reducao = 3;
+            }
     
             for (let i = 0; i < reducao; i++) {
                 if (indexAlunos > 0) {
