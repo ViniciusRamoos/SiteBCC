@@ -10988,7 +10988,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/bg-image.png");
+  background-image: url("../assets/img/backgrounds/bg-image.png");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -11304,7 +11304,7 @@ header.masthead .masthead-heading {
 
 section#contato {
   background-color: #212529;
-  background-image: url("../assets/img/map-image.png");
+  background-image: url("../assets/img/backgrounds/bg-image.png");
   background-repeat: no-repeat;
   background-position: center;
 }
