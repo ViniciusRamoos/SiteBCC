@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Seção "Professores"
     const professoresContainer = document.getElementById("professores");
-    const professores = professoresContainer.querySelectorAll(".col-lg-4");
+    const professores = professoresContainer.querySelectorAll(".team-member");
     const carregarMaisProfessores = document.getElementById("carregarMaisProfessores");
     const carregarMenosProfessores = document.getElementById("carregarMenosProfessores");
     let indexProfessores = 0;

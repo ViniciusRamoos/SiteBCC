@@ -1285,12 +1285,6 @@ progress {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-  #professores .col-lg-4{
-    flex: 0 0 auto;
-    width: 33.33333333%;
-    display: none;
-  }
-
   .col-lg-5 {
     flex: 0 0 auto;
     width: 41.66666667%;
@@ -11381,4 +11375,7 @@ section#contato #contato-imagens img{
 }
 .tituloCont{
   color: #000000 !important;
+}
+#professores .team-member{
+  display: none;
 }
