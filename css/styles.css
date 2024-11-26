@@ -11046,7 +11046,7 @@ header.masthead .masthead-heading {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity ease-in-out 0.25s;
+  transition: opacity ease-in-out 0.5, transform 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 #areas .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
   font-size: 1.25rem;
@@ -11054,6 +11054,11 @@ header.masthead .masthead-heading {
 }
 #areas .portfolio-item .portfolio-link:hover .portfolio-hover {
   opacity: 1;
+}
+#areas .portfolio-item .portfolio-link:hover img {
+  transform: scale(1.1);
+  transition: width 2s;
+  border: 2px solid rgba(20,60,161,1);
 }
 #areas .portfolio-item .portfolio-caption {
   padding: 1.5rem;
