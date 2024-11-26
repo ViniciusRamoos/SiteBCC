@@ -10,7 +10,7 @@
 window.addEventListener('DOMContentLoaded', event => {
 
 
-    //  Activate Bootstrap scrollspy on the main nav element
+    // Ativação do Scroll Spy para a barra de navegação
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
         new bootstrap.ScrollSpy(document.body, {
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     };
 
-    // Collapse responsive navbar when toggler is visible
+    // Ativação do Toggler da Navbar 
     const navbarToggler = document.body.querySelector('.navbar-toggler');
     const responsiveNavItems = [].slice.call(
         document.querySelectorAll('#navbarResponsive .nav-link')
@@ -32,13 +32,14 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    // Botões "Mostrar Mais" e "Mostrar Menos" da seção Professores
+    // Seção "Professores"
     const professoresContainer = document.getElementById("professores");
     const professores = professoresContainer.querySelectorAll(".col-lg-4");
     const carregarMaisProfessores = document.getElementById("carregarMaisProfessores");
     const carregarMenosProfessores = document.getElementById("carregarMenosProfessores");
     let indexProfessores = 0;
 
+    // Função para exibir mais imagens dos professores
     function mostrarNovosProfessores(){
         for (let i = 0; i < 3; i++){
             if (indexProfessores < professores.length){
@@ -51,12 +52,13 @@ window.addEventListener('DOMContentLoaded', event => {
 
         carregarMaisProfessores.style.display = indexProfessores >= professores.length ? "none" : "inline-block";
 
-        //Suavização do scroll
+        // Suavização do scroll
         if (indexProfessores > 0){
             professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block: "start"});
         }
     }
 
+    // Função para exibir menos imagens dos professores
     function esconderNovosProfessores(){
         let reducao = indexProfessores === professores.length ? professores.length % 3 : 3;
 
@@ -75,18 +77,21 @@ window.addEventListener('DOMContentLoaded', event => {
 
         carregarMenosProfessores.style.display = indexProfessores > 3 ? "inline-block" : "none";
 
+        // Suavização do scroll
         if(indexProfessores > 0){
             professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block:"start"});
         }
     }
 
+    // Função genérica para carregar imagens dos graduados por ano
     function inicializarGraduados(ano) {
         const graduadosContainer = document.getElementById(`graduados-${ano}`);
         const graduados = graduadosContainer.querySelectorAll(".team-member");
         const carregarMaisGraduados = document.getElementById(`carregarMaisGraduados${ano}`);
         const carregarMenosGraduados = document.getElementById(`carregarMenosGraduados${ano}`);
         let indexGraduados = 3;
-    
+        
+        // Carrega mais imagens dos graduados de um ano específico
         function mostrarNovosGraduados() {
             for (let i = 0; i < 3; i++) {
                 if (indexGraduados < graduados.length) {
@@ -104,6 +109,7 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         }
     
+        // Carrega menos imagens dos graduados de um ano específico
         function esconderNovosGraduados() {
             let reducao = indexGraduados === graduados.length ? graduados.length % 3 : 3;
             
@@ -120,7 +126,8 @@ window.addEventListener('DOMContentLoaded', event => {
     
             carregarMaisGraduados.style.display = indexGraduados < graduados.length ? "inline-block" : "none";
             carregarMenosGraduados.style.display = indexGraduados > 3 ? "inline-block" : "none";
-    
+            
+            // Suavização do scroll
             if (indexGraduados > 0) {
                 graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "start" });
             }
@@ -129,7 +136,7 @@ window.addEventListener('DOMContentLoaded', event => {
         carregarMaisGraduados.addEventListener("click", mostrarNovosGraduados);
         carregarMenosGraduados.addEventListener("click", esconderNovosGraduados);
     
-        // Inicializar o estado inicial
+        // Inicializa o estado inicial
         for (let i = 0; i < graduados.length; i++) {
             graduados[i].style.display = i < 3 ? "block" : "none";
         }
@@ -137,6 +144,7 @@ window.addEventListener('DOMContentLoaded', event => {
         carregarMenosGraduados.style.display = "none";
     }
 
+    // Função genérica para carregar imagens dos alunos por ano
     function inicializarAlunos(ano) {
         const alunosContainer = document.getElementById(`alunos-${ano}`);
         const alunos = alunosContainer.querySelectorAll(".team-member");
@@ -144,6 +152,7 @@ window.addEventListener('DOMContentLoaded', event => {
         const carregarMenosAlunos = document.getElementById(`carregarMenosAlunos${ano}`);
         let indexAlunos = 3;
     
+        // Carrega mais imagens dos alunos de um ano específico
         function mostrarNovosAlunos() {
             for (let i = 0; i < 3; i++) {
                 if (indexAlunos < alunos.length) {
@@ -161,6 +170,7 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         }
     
+        // Carrega menos imagens dos alunos de um ano específico
         function esconderNovosAlunos() {
             let reducao = indexAlunos === alunos.length ? alunos.length % 3 : 3;
 
@@ -178,6 +188,7 @@ window.addEventListener('DOMContentLoaded', event => {
             carregarMaisAlunos.style.display = indexAlunos < alunos.length ? "inline-block" : "none";
             carregarMenosAlunos.style.display = indexAlunos > 3 ? "inline-block" : "none";
     
+            // Suavização do scroll
             if (indexAlunos > 0) {
                 alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "start" });
             }
@@ -186,7 +197,7 @@ window.addEventListener('DOMContentLoaded', event => {
         carregarMaisAlunos.addEventListener("click", mostrarNovosAlunos);
         carregarMenosAlunos.addEventListener("click", esconderNovosAlunos);
     
-        // Inicializar o estado inicial
+        // Inicializa o estado inicial
         for (let i = 0; i < alunos.length; i++) {
             alunos[i].style.display = i < 3 ? "block" : "none";
         }
@@ -194,26 +205,32 @@ window.addEventListener('DOMContentLoaded', event => {
         carregarMenosAlunos.style.display = "none";
     }
 
+    // Inicialização dos professores na página
     mostrarNovosProfessores();
 
+    // Atribuição dos botões "Mostra Mais" e "Mostrar Menos" dos professores
     carregarMaisProfessores.addEventListener("click", mostrarNovosProfessores);
     carregarMenosProfessores.addEventListener("click",esconderNovosProfessores);
 
+    // Carrega cada subseção dos graduados    
     const anosGraduados = [2019, 2020];
     anosGraduados.forEach(inicializarGraduados);
 
+    // Carrega cada subseção dos alunos
     const anosAlunos = [2019, 2020, 2021, 2022, 2023, 2024];
     anosAlunos.forEach(inicializarAlunos);
+
+    // Chamada da função para validar formulário de contato
     validaFormulario();
 
-    window.scrollTo(0,0);
-
+    // Carrega a validação do formulário para cada input alterado
     document.querySelectorAll('input, textarea').forEach(function(element) {
         element.addEventListener('input', function() {
             validaFormulario();
         });
     });
 
+    // Função para validação do formulário
     function validaFormulario() {
     
     let nome = document.querySelector('input[name="nome"]').value;
@@ -223,14 +240,14 @@ window.addEventListener('DOMContentLoaded', event => {
 
     let submitButton = document.getElementById("submitButton");
     
-    
+    // Esconde os Spans de erro
     document.querySelectorAll('.error-message').forEach(function(errorSpan) {
         errorSpan.style.display = 'none';
     });
 
     let errors = false;
 
-    
+    // Verificação dos campos vazios
     if (nome === "") {
         document.getElementById('errorNome').textContent = "O campo 'Nome' está vazio.";
         document.getElementById('errorNome').style.display = 'block';
@@ -255,7 +272,7 @@ window.addEventListener('DOMContentLoaded', event => {
         errors = true;
     }
 
-    
+    // Verificação do padrão do email usando regex
     let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (email && !emailPattern.test(email)) {
         document.getElementById('errorEmail').textContent = "O email não está no formato correto.";
@@ -263,7 +280,7 @@ window.addEventListener('DOMContentLoaded', event => {
         errors = true;
     }
 
-    
+    // Habilita o botão de envio baseado no estado do formulário
     if (errors) {
         submitButton.disabled = true;
     } else {
@@ -271,6 +288,7 @@ window.addEventListener('DOMContentLoaded', event => {
     }
     }
 
+    // API de email da Web3Forms
     const form = document.getElementById('contatoForm');
     const result = document.getElementById('result');
 
@@ -311,4 +329,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 }, 3000);
             });
     });
+
+    // Scrolla a página para o inicio ao fim do carregamento.
+    window.scrollTo(0,0);
 });
