@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
         // Suavização do scroll
         if (indexProfessores > 0){
-            professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block: "start"});
+            professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block: "center"});
         }
     }
 
@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
         // Suavização do scroll
         if(indexProfessores > 0){
-            professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block:"start"});
+            professores[indexProfessores - 1].scrollIntoView({behavior: "smooth", block:"center"});
         }
     }
 
@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', event => {
     
             // Suavização do scroll
             if (indexGraduados > 0) {
-                graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+                graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "center" });
             }
         }
     
@@ -129,7 +129,7 @@ window.addEventListener('DOMContentLoaded', event => {
             
             // Suavização do scroll
             if (indexGraduados > 0) {
-                graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+                graduados[indexGraduados - 1].scrollIntoView({ behavior: "smooth", block: "center" });
             }
         }
     
@@ -166,7 +166,7 @@ window.addEventListener('DOMContentLoaded', event => {
     
             // Suavização do scroll
             if (indexAlunos > 0) {
-                alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+                alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "center" });
             }
         }
     
@@ -190,7 +190,7 @@ window.addEventListener('DOMContentLoaded', event => {
     
             // Suavização do scroll
             if (indexAlunos > 0) {
-                alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+                alunos[indexAlunos - 1].scrollIntoView({ behavior: "smooth", block: "center" });
             }
         }
     
