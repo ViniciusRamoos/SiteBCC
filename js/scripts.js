@@ -220,88 +220,67 @@ window.addEventListener('DOMContentLoaded', event => {
     const anosAlunos = [2019, 2020, 2021, 2022, 2023, 2024];
     anosAlunos.forEach(inicializarAlunos);
 
-    // Chamada da função para validar formulário de contato
-    validaFormulario();
-
-    // Carrega a validação do formulário para cada input alterado
-    document.querySelectorAll('input, textarea').forEach(function(element) {
-        element.addEventListener('input', function() {
-            validaFormulario();
-        });
-    });
-
     // Função para validação do formulário
-    function validaFormulario() {
+    document.getElementById('submitButton').addEventListener('click', function (e) {
+        e.preventDefault(); // Previne o comportamento padrão do botão
     
-    let nome = document.querySelector('input[name="nome"]').value;
-    let email = document.querySelector('input[name="email"]').value;
-    let celular = document.querySelector('input[name="celular"]').value;
-    let mensagem = document.querySelector('textarea[name="mensagem"]').value;
-
-    let submitButton = document.getElementById("submitButton");
+        let nome = document.querySelector('input[name="nome"]').value;
+        let email = document.querySelector('input[name="email"]').value;
+        let celular = document.querySelector('input[name="celular"]').value;
+        let mensagem = document.querySelector('textarea[name="mensagem"]').value;
     
-    // Esconde os Spans de erro
-    document.querySelectorAll('.error-message').forEach(function(errorSpan) {
-        errorSpan.style.display = 'none';
-    });
-
-    let errors = false;
-
-    // Verificação dos campos vazios
-    if (nome === "") {
-        document.getElementById('errorNome').textContent = "O campo 'Nome' está vazio.";
-        document.getElementById('errorNome').style.display = 'block';
-        errors = true;
-    }
-
-    if (email === "") {
-        document.getElementById('errorEmail').textContent = "O campo 'Email' está vazio.";
-        document.getElementById('errorEmail').style.display = 'block';
-        errors = true;
-    }
-
-    if (celular === "") {
-        document.getElementById('errorCelular').textContent = "O campo 'Celular' está vazio.";
-        document.getElementById('errorCelular').style.display = 'block';
-        errors = true;
-    }
-
-    if (mensagem === "") {
-        document.getElementById('errorMensagem').textContent = "O campo 'Mensagem' está vazio.";
-        document.getElementById('errorMensagem').style.display = 'block';
-        errors = true;
-    }
-
-    // Verificação do padrão do email usando regex
-    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (email && !emailPattern.test(email)) {
-        document.getElementById('errorEmail').textContent = "O email não está no formato correto.";
-        document.getElementById('errorEmail').style.display = 'block';
-        errors = true;
-    }
-
-    // Habilita o botão de envio baseado no estado do formulário
-    if (errors) {
-        submitButton.disabled = true;
-    } else {
-        submitButton.disabled = false;
-    }
-    }
-
-    // API de email da Web3Forms
-    const form = document.getElementById('contatoForm');
-    const result = document.getElementById('result');
-
-    form.addEventListener('submit', function(e) {
-        const formData = new FormData(form);
-        e.preventDefault();
-
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-
-        result.innerHTML = "Aguarde..."
-
-        fetch('https://api.web3forms.com/submit', {
+        let errors = false;
+    
+        // Esconde as mensagens de erro
+        document.querySelectorAll('.error-message').forEach(function (errorSpan) {
+            errorSpan.style.display = 'none';
+        });
+    
+        // Verificação dos campos vazios
+        if (nome === "") {
+            document.getElementById('errorNome').textContent = "O campo 'Nome' está vazio.";
+            document.getElementById('errorNome').style.display = 'block';
+            errors = true;
+        }
+    
+        if (email === "") {
+            document.getElementById('errorEmail').textContent = "O campo 'Email' está vazio.";
+            document.getElementById('errorEmail').style.display = 'block';
+            errors = true;
+        }
+    
+        if (celular === "") {
+            document.getElementById('errorCelular').textContent = "O campo 'Celular' está vazio.";
+            document.getElementById('errorCelular').style.display = 'block';
+            errors = true;
+        }
+    
+        if (mensagem === "") {
+            document.getElementById('errorMensagem').textContent = "O campo 'Mensagem' está vazio.";
+            document.getElementById('errorMensagem').style.display = 'block';
+            errors = true;
+        }
+    
+        // Verificação do padrão do email usando regex
+        let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (email && !emailPattern.test(email)) {
+            document.getElementById('errorEmail').textContent = "O email não está no formato correto.";
+            document.getElementById('errorEmail').style.display = 'block';
+            errors = true;
+        }
+    
+        if (!errors) {
+            // Validação bem-sucedida, prossegue com o envio da API
+            const form = document.getElementById('contatoForm');
+            const result = document.getElementById('result');
+            const formData = new FormData(form);
+    
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+    
+            result.innerHTML = "Aguarde...";
+    
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -309,26 +288,28 @@ window.addEventListener('DOMContentLoaded', event => {
                 },
                 body: json
             })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status === 200) {
-                    result.innerHTML = "Email enviado com sucesso!";
-                } else {
-                    console.log(response);
-                    result.innerHTML = json.message;
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                result.innerHTML = "Algo deu errado!";
-            })
-            .then(function() {
-                form.reset();
-                setTimeout(() => {
-                    result.style.display = "none";
-                }, 3000);
-            });
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status === 200) {
+                        result.innerHTML = "Email enviado com sucesso!";
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Algo deu errado!";
+                })
+                .then(function () {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 3000);
+                });
+        }
     });
+    
 
     // Scrolla a página para o inicio ao fim do carregamento.
     window.scrollTo(0,0);
